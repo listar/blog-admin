@@ -1,4 +1,4 @@
-import { Table, Tag, Space, Card, Button, message, Popconfirm } from 'antd';
+import { Table, Space, Card, Button, message, Popconfirm } from 'antd';
 import { PlusOutlined, QuestionCircleOutlined } from '@ant-design/icons';
 import { FormattedMessage, history } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
@@ -16,7 +16,12 @@ const columns = [
     dataIndex: 'Content',
     key: 'Content',
   },
-
+  {
+    title: '添加时间',
+    dataIndex: 'CreatedAt',
+    key: 'created_at',
+    render: (text) => text.slice(0, 10),
+  },
   {
     title: '操作',
     key: 'action',
@@ -24,7 +29,7 @@ const columns = [
       <Space size="middle">
         <a
           onClick={() => {
-            history.push('/saying/edit/' + record.ID);
+            history.push(`/saying/edit/${record.ID}`);
           }}
         >
           编辑

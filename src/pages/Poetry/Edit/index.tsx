@@ -1,17 +1,5 @@
-import {
-  Tag,
-  Space,
-  Card,
-  Button,
-  Form,
-  Input,
-  Select,
-  Row,
-  Col,
-  message,
-  Spin,
-} from 'antd';
-import { FormattedMessage, history } from 'umi';
+import { Card, Button, Form, Input, Row, Col, message, Spin } from 'antd';
+import { history } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
 import MdEditor from 'react-markdown-editor-lite';
 import MarkdownIt from 'markdown-it';
@@ -29,13 +17,13 @@ const tailLayout = {
 };
 
 function Edit(props: any) {
-  const id = parseInt(props.match.params.id);
+  const id = parseInt(props.match.params.id, 10);
   const [content, setContent] = useState('');
   const [detail, setDetail] = useState({
     Title: '',
     Author: '',
     Content: '',
-    Remark: ''
+    Remark: '',
   });
   const [loading, setLoading] = useState(true);
 
@@ -47,9 +35,9 @@ function Edit(props: any) {
     poetryDetail({
       ID: id,
     }).then((res) => {
-      let _data = res.data.result;
-      setDetail(_data);
-      setContent(_data.Remark);
+      const { result } = res.data;
+      setDetail(result);
+      setContent(result.Remark);
       setLoading(false);
     });
   }, [id]);
@@ -63,7 +51,7 @@ function Edit(props: any) {
       return;
     }
     const pushData = {
-      id: id,
+      id,
       ...values,
       Remark: content,
     };
@@ -73,7 +61,7 @@ function Edit(props: any) {
         message.error(res.msg);
         return;
       }
-      message.success('成功' + (id ? '更新' : '新增'));
+      message.success(`成功${id ? '更新' : '新增'}`);
       history.goBack();
     });
   };
@@ -82,7 +70,7 @@ function Edit(props: any) {
     console.log('Failed:', errorInfo);
   };
   // Finish!
-  function handleEditorChange({ html, text }) {
+  function handleEditorChange({ text }) {
     // console.log('handleEditorChange', html, text);
     setContent(text);
   }

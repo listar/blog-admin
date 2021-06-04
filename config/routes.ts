@@ -39,7 +39,7 @@
                 icon: 'smile',
                 component: './Article',
               },
-               {
+              {
                 path: '/article/edit/:id',
                 name: '操作文章',
                 component: './Article/Edit',
@@ -51,7 +51,7 @@
                 icon: 'smile',
                 component: './Poetry',
               },
-               {
+              {
                 path: '/poetry/edit/:id',
                 name: '操作诗词歌赋',
                 component: './Poetry/Edit',
@@ -63,13 +63,11 @@
                 icon: 'smile',
                 component: './Saying',
               },
-               {
+              {
                 path: '/saying/edit/:id',
                 name: '名言',
                 component: './Saying/Edit',
               },
-
-
 
               {
                 path: '/admin',
@@ -87,13 +85,13 @@
                   },
                 ],
               },
-              {
-                name: 'list.table-list',
-                icon: 'table',
-                path: '/list',
-                component: './TableList',
-                authority: ['user'],
-              },
+              // {
+              //   name: 'list.table-list',
+              //   icon: 'table',
+              //   path: '/list',
+              //   component: './TableList',
+              //   authority: ['user'],
+              // },
               {
                 component: './404',
               },

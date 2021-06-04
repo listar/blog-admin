@@ -16,11 +16,12 @@ const columns = [
       </a>
     ),
   },
-  {
-    title: '状态',
-    dataIndex: 'Status',
-    key: 'status',
-  },
+  // {
+  //   title: '状态',
+  //   dataIndex: 'Status',
+  //   key: 'status',
+  // },
+
   {
     title: 'Tags',
     key: 'tags',
@@ -43,13 +44,19 @@ const columns = [
     ),
   },
   {
+    title: '添加时间',
+    dataIndex: 'CreatedAt',
+    key: 'created_at',
+    render: (text) => text.slice(0, 10),
+  },
+  {
     title: '操作',
     key: 'action',
     render: (text, record) => (
       <Space size="middle">
         <a
           onClick={() => {
-            history.push('/article/edit/' + record.ID);
+            history.push(`/article/edit/${record.ID}`);
           }}
         >
           编辑

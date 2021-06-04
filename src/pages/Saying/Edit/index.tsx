@@ -1,17 +1,5 @@
-import {
-  Tag,
-  Space,
-  Card,
-  Button,
-  Form,
-  Input,
-  Select,
-  Row,
-  Col,
-  message,
-  Spin,
-} from 'antd';
-import { FormattedMessage, history } from 'umi';
+import { Card, Button, Form, Input, message, Spin } from 'antd';
+import { history } from 'umi';
 import { PageContainer } from '@ant-design/pro-layout';
 // import style manually
 import { useEffect, useState } from 'react';
@@ -26,7 +14,7 @@ const tailLayout = {
 };
 
 function Edit(props: any) {
-  const id = parseInt(props.match.params.id);
+  const id = parseInt(props.match.params.id, 10);
   const [detail, setDetail] = useState({
     Author: '',
     Content: '',
@@ -46,10 +34,9 @@ function Edit(props: any) {
     });
   }, [id]);
 
-
   const onFinish = (values: any) => {
     const pushData = {
-      id: id,
+      id,
       ...values,
     };
 
@@ -58,14 +45,14 @@ function Edit(props: any) {
         message.error(res.msg);
         return;
       }
-      message.success('成功' + (id ? '更新' : '新增'));
+      message.success(`成功${id ? '更新' : '新增'}`);
       history.goBack();
     });
   };
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-  };
+  // const onFinishFailed = (errorInfo: any) => {
+  //   // console.log('Failed:', errorInfo)
+  // };
 
   return (
     <PageContainer title={id ? '更新名言' : '添加名言'}>
@@ -78,7 +65,7 @@ function Edit(props: any) {
             name="basic"
             initialValues={detail}
             onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
+            // onFinishFailed={onFinishFailed}
           >
             <Form.Item
               label="作者"

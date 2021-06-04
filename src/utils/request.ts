@@ -50,7 +50,7 @@ const errorHandler = (error: { response: Response }): Response => {
 const request = extend({
   errorHandler, // default error handling
   headers: {
-    "Authorization": "Bearer "+ window.localStorage.getItem('qqfav-token')
+    Authorization: `Bearer ${window.localStorage.getItem('qqfav-token')}`,
   },
   credentials: 'include', // Does the default request bring cookies
 });

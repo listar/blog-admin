@@ -12,6 +12,8 @@ export default defineConfig({
   dva: {
     hmr: true,
   },
+  outputPath: './admindist',
+  // base: "./qqfavadmin",
   history: {
     type: 'browser',
   },
